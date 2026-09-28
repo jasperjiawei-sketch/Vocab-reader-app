@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="theme-color" content="#08080d" />
+  <title>Vocab Reader</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+                   "Segoe UI", sans-serif;
+      background: #08080d;
+      color: white;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .app {
+      max-width: 520px;
+      margin: auto;
+      min-height: 100vh;
+      padding-bottom: 100px;
+    }
+
+    .top {
+      padding:
+        calc(24px + env(safe-area-inset-top))
+        22px 20px;
+      background:
+        radial-gradient(circle at 85% 10%, #6d42ff 0, transparent 32%),
+        linear-gradient(180deg, #17111f, #08080d);
+    }
+
+    .mini {
+      color: #9c8aff;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: 38px;
+      line-height: 1.05;
+      margin: 10px 0;
+    }
+
+    .subtitle {
+      color: #aaa5b5;
+      line-height: 1.5;
+      font-size: 15px;
+    }
+
+    .search {
+      margin-top: 20px;
+      background: #18171e;
+      border: 1px solid #292631;
+      padding: 14px 16px;
+      border-radius: 16px;
+      color: #85808f;
+    }
+
+    .section {
+      padding: 24px 20px 0;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 15px;
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: 21px;
+    }
+
+    .section-title span {
+      color: #8b6cff;
+      font-size: 14px;
+    }
+
+    .feature {
+      border-radius: 25px;
+      padding: 23px;
+      min-height: 205px;
+      background:
+        linear-gradient(135deg, #6d42ff, #342079 65%, #17111f);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .feature::after {
+      content: "Aa";
+      position: absolute;
+      right: 18px;
+      bottom: -20px;
+      font-size: 120px;
+      font-weight: 900;
+      opacity: .1;
+    }
+
+    .tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      background: rgba(255,255,255,.16);
+      padding: 7px 10px;
+      border-radius: 999px;
+    }
+
+    .feature h3 {
+      font-size: 27px;
+      max-width: 280px;
+      margin: 30px 0 10px;
+    }
+
+    .feature p {
+      color: #ded8ff;
+      margin: 0;
+      max-width: 290px;
+      line-height: 1.45;
+    }
+
+    .cards {
+      display: grid;
+      gap: 13px;
+    }
+
+    .card {
+      background: #141319;
+      border: 1px solid #25222d;
+      padding: 17px;
+      border-radius: 19px;
+      display: flex;
+      gap: 15px;
+      cursor: pointer;
+    }
+
+    .icon {
+      width: 58px;
+      min-width: 58px;
+      height: 58px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-size: 27px;
+      background: #221a36;
+    }
+
+    .card h3 {
+      margin: 1px 0 5px;
+      font-size: 17px;
+    }
+
+    .card p {
+      margin: 0;
+      color: #8d8995;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .bottom-nav {
+      position: fixed;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(520px,100%);
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      background: rgba(18,17,23,.94);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid #292631;
+      padding: 11px 15px calc(11px + env(safe-area-inset-bottom));
+      z-index: 20;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #77717f;
+      font-size: 12px;
+    }
+
+    .nav-item strong {
+      display: block;
+      font-size: 20px;
+      margin-bottom: 2px;
+    }
+
+    .nav-item.active {
+      color: #9b7cff;
+    }
+
+    .reader {
+      display: none;
+      min-height: 100vh;
+      background: #0b0a10;
+    }
+
+    .reader.open {
+      display: block;
+    }
+
+    .home.hidden {
+      display: none;
+    }
+
+    .reader-head {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      padding:
+        calc(14px + env(safe-area-inset-top))
+        18px 14px;
+      background: rgba(11,10,16,.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid #25222d;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .back {
+      border: 0;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      color: white;
+      background: #1d1a25;
+      font-size: 21px;
+    }
+
+    .reader-content {
+      padding: 28px 22px 110px;
+    }
+
+    .reader-content h1 {
+      font-size: 32px;
+    }
+
+    .article-meta {
+      color: #8b6cff;
+      font-weight: 700;
+      margin-bottom: 25px;
+    }
+
+    .article {
+      font-family: Georgia, serif;
+      font-size: 20px;
+      line-height: 1.85;
+      color: #e7e4eb;
+    }
+
+    .word {
+      color: #bba8ff;
+      border-bottom: 1px dashed #8b6cff;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    .word.seen {
+      color: white;
+      font-weight: 800;
+      background: #443078;
+      padding: 1px 4px;
+      border-radius: 5px;
+    }
+
+    .sheet {
+      position: fixed;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -100%;
+      width: min(520px,100%);
+      background: #17151d;
+      border-top: 1px solid #302c38;
+      border-radius: 27px 27px 0 0;
+      padding: 10px 22px calc(30px + env(safe-area-inset-bottom));
+      transition: .3s ease;
+      z-index: 50;
+      box-shadow: 0 -20px 60px rgba(0,0,0,.5);
+    }
+
+    .sheet.show {
+      bottom: 0;
+    }
+
+    .handle {
+      width: 45px;
+      height: 5px;
+      border-radius: 10px;
+      background: #4b4653;
+      margin: 0 auto 20px;
+    }
+
+    .word-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: start;
+    }
+
+    .word-title h2 {
+      font-size: 30px;
+      margin: 0;
+    }
+
+    .ipa {
+      color: #988fa4;
+      margin: 5px 0 20px;
+    }
+
+    .cn {
+      font-size: 19px;
+      font-weight: 700;
+      color: #c7b9ff;
+      margin-bottom: 18px;
+    }
+
+    .label {
+      color: #817b89;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 17px;
+    }
+
+    .definition {
+      margin-top: 6px;
+      line-height: 1.55;
+    }
+
+    .example {
+      background: #201d28;
+      border-radius: 14px;
+      padding: 13px;
+      margin-top: 8px;
+      line-height: 1.5;
+    }
+
+    .close {
+      background: #6f46ff;
+      border: 0;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="app">
+
+  <div id="home" class="home">
+
+    <header class="top">
+      <div class="mini">AI English Learning</div>
+
+      <h1>Read.<br>Tap. Learn.</h1>
+
+      <div class="subtitle">
+        阅读真实英文内容。遇到陌生单词时直接点击，
+        在阅读过程中自然积累你的词汇库。
+      </div>
+
+      <div class="search">
+        🔎 Search articles, apps and topics
+      </div>
+    </header>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Featured</h2>
+        <span>Today</span>
+      </div>
+
+      <div class="feature" onclick="openArticle()">
+        <span class="tag">TECHNOLOGY</span>
+
+        <h3>The next era of artificial intelligence</h3>
+
+        <p>
+          Learn English through a short article about technology,
+          business and AI.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+
+      <div class="section-title">
+        <h2>Explore</h2>
+        <span>See all</span>
+      </div>
+
+      <div class="cards">
+
+        <div class="card" onclick="openArticle()">
+          <div class="icon">🤖</div>
+          <div>
+            <h3>Artificial Intelligence</h3>
+            <p>
+              Technology, products, startups and the future of work.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="icon">📈</div>
+          <div>
+            <h3>Business & Marketing</h3>
+            <p>
+              Build practical vocabulary for global business.
+            </p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="icon">🌍</div>
+          <div>
+            <h3>World & Ideas</h3>
+            <p>
+              Read about economics, society and new ideas.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-title">
+        <h2>Your vocabulary</h2>
+        <span id="count">0 words</span>
+      </div>
+
+      <div class="card">
+        <div class="icon">Aa</div>
+        <div>
+          <h3>Words you've explored</h3>
+          <p id="historyText">
+            Tap words while reading and they will appear here.
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+
+  <div id="reader" class="reader">
+
+    <div class="reader-head">
+      <button class="back" onclick="closeArticle()">‹</button>
+      <div>
+        <strong>AI & Technology</strong>
+        <div style="font-size:12px;color:#7f7888">
+          Interactive Reading
+        </div>
+      </div>
+    </div>
+
+    <div class="reader-content">
+
+      <div class="article-meta">
+        6 MIN READ · INTERMEDIATE
+      </div>
+
+      <h1>The next era of artificial intelligence</h1>
+
+      <div class="article">
+
+        <p>
+          Artificial intelligence is moving from an
+          <span class="word" data-word="emerging">emerging</span>
+          technology into a powerful part of everyday business.
+          Companies are increasingly using AI to improve
+          productivity, analyze information and create entirely
+          new products.
+        </p>
+
+        <p>
+          This shift is creating significant
+          <span class="word" data-word="momentum">momentum</span>
+          across the technology industry. What once seemed
+          experimental is becoming a core part of how modern
+          companies operate.
+        </p>
+
+        <p>
+          The broader
+          <span class="word" data-word="landscape">landscape</span>
+          is also changing quickly. Businesses must determine
+          where AI can create genuine value rather than simply
+          following trends.
+        </p>
+
+        <p>
+          For marketers, the opportunity is particularly
+          <span class="word" data-word="remarkable">remarkable</span>.
+          AI can help teams understand customers, generate ideas
+          and systematically test new approaches.
+        </p>
+
+        <p>
+          However, sustainable progress still requires
+          <span class="word" data-word="rigorous">rigorous</span>
+          thinking. Technology alone does not create a successful
+          product; companies must understand users, markets and
+          the problems they are trying to solve.
+        </p>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+<div class="bottom-nav" id="nav">
+
+  <div class="nav-item active">
+    <strong>⌂</strong>
+    Discover
+  </div>
+
+  <div class="nav-item">
+    <strong>◈</strong>
+    Vocabulary
+  </div>
+
+  <div class="nav-item">
+    <strong>●</strong>
+    Profile
+  </div>
+
+</div>
+
+
+<div class="sheet" id="sheet">
+
+  <div class="handle"></div>
+
+  <div class="word-title">
+    <div>
+      <h2 id="sheetWord"></h2>
+      <div class="ipa" id="sheetIPA"></div>
+    </div>
+
+    <button class="close" onclick="closeSheet()">Done</button>
+  </div>
+
+  <div class="cn" id="sheetCN"></div>
+
+  <div class="label">Meaning</div>
+  <div class="definition" id="sheetDefinition"></div>
+
+  <div class="label">Example</div>
+  <div class="example" id="sheetExample"></div>
+
+  <div class="label">Collocation</div>
+  <div class="definition" id="sheetCollocation"></div>
+
+</div>
+
+
+<script>
+
+const dictionary = {
+
+  emerging: {
+    ipa: "/ɪˈmɜːrdʒɪŋ/",
+    cn: "新兴的；正在出现的",
+    definition:
+      "Beginning to become important, noticeable, or established.",
+    example:
+      "AI is creating opportunities in many emerging industries.",
+    collocation:
+      "emerging market · emerging technology · emerging trend"
+  },
+
+  momentum: {
+    ipa: "/moʊˈmentəm/",
+    cn: "势头；动力；发展势能",
+    definition:
+      "The force or progress that allows something to continue growing.",
+    example:
+      "The company gained momentum after launching its new product.",
+    collocation:
+      "gain momentum · maintain momentum · strong momentum"
+  },
+
+  landscape: {
+    ipa: "/ˈlændskeɪp/",
+    cn: "格局；环境；领域形势",
+    definition:
+      "The overall situation or environment within a particular field.",
+    example:
+      "Artificial intelligence is reshaping the business landscape.",
+    collocation:
+      "business landscape · competitive landscape · digital landscape"
+  },
+
+  remarkable: {
+    ipa: "/rɪˈmɑːrkəbəl/",
+    cn: "非凡的；显著的；引人注目的",
+    definition:
+      "Unusual or impressive enough to deserve attention.",
+    example:
+      "The technology has made remarkable progress in recent years.",
+    collocation:
+      "remarkable growth · remarkable achievement · remarkable progress"
+  },
+
+  rigorous: {
+    ipa: "/ˈrɪɡərəs/",
+    cn: "严谨的；严格的",
+    definition:
+      "Extremely thorough, careful, and precise.",
+    example:
+      "Good product research requires rigorous analysis.",
+    collocation:
+      "rigorous analysis · rigorous testing · rigorous research"
+  }
+
+};
+
+
+let history =
+  JSON.parse(localStorage.getItem("vocabHistory") || "[]");
+
+
+function openArticle() {
+
+  document.getElementById("home").classList.add("hidden");
+
+  document.getElementById("reader").classList.add("open");
+
+  document.getElementById("nav").style.display = "none";
+
+  window.scrollTo(0,0);
+
+  updateSeenWords();
+
+}
+
+
+function closeArticle() {
+
+  document.getElementById("reader").classList.remove("open");
+
+  document.getElementById("home").classList.remove("hidden");
+
+  document.getElementById("nav").style.display = "grid";
+
+  updateHistory();
+
+  window.scrollTo(0,0);
+
+}
+
+
+function showWord(word) {
+
+  const data = dictionary[word];
+
+  if (!data) return;
+
+  document.getElementById("sheetWord").textContent = word;
+
+  document.getElementById("sheetIPA").textContent = data.ipa;
+
+  document.getElementById("sheetCN").textContent = data.cn;
+
+  document.getElementById("sheetDefinition").textContent =
+    data.definition;
+
+  document.getElementById("sheetExample").textContent =
+    data.example;
+
+  document.getElementById("sheetCollocation").textContent =
+    data.collocation;
+
+  document.getElementById("sheet").classList.add("show");
+
+
+  if (!history.includes(word)) {
+
+    history.push(word);
+
+    localStorage.setItem(
+      "vocabHistory",
+      JSON.stringify(history)
+    );
+
+  }
+
+  updateSeenWords();
+  updateHistory();
+
+}
+
+
+function closeSheet() {
+
+  document.getElementById("sheet").classList.remove("show");
+
+}
+
+
+document.querySelectorAll(".word").forEach(el => {
+
+  el.addEventListener("click", () => {
+
+    showWord(el.dataset.word);
+
+  });
+
+});
+
+
+function updateSeenWords() {
+
+  document.querySelectorAll(".word").forEach(el => {
+
+    if (history.includes(el.dataset.word)) {
+
+      el.classList.add("seen");
+
+    }
+
+  });
+
+}
+
+
+function updateHistory() {
+
+  const count = document.getElementById("count");
+
+  const text = document.getElementById("historyText");
+
+  count.textContent =
+    history.length + (history.length === 1 ? " word" : " words");
+
+
+  if (history.length) {
+
+    text.innerHTML =
+      history
+        .slice(-6)
+        .reverse()
+        .map(word => "<b>" + word + "</b>")
+        .join(" · ");
+
+  }
+
+}
+
+
+updateHistory();
+updateSeenWords();
+
+</script>
+
+</body>
+</html>
