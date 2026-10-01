@@ -39,18 +39,18 @@
       cursor: pointer;
     }
 
-    .app {
-      max-width: 520px;
-      margin: auto;
-      min-height: 100vh;
-      padding-bottom: 100px;
-    }
-
     .hidden {
       display: none !important;
     }
 
-    /* ---------- HOME ---------- */
+    .app {
+      width: min(100%, 520px);
+      min-height: 100vh;
+      margin: auto;
+      padding-bottom: 105px;
+    }
+
+    /* HOME */
 
     .top {
       padding:
@@ -75,28 +75,30 @@
       color: #9c8aff;
       font-size: 13px;
       font-weight: 800;
-      letter-spacing: 1.7px;
+      letter-spacing: 1.6px;
       text-transform: uppercase;
     }
 
     h1 {
+      margin: 12px 0;
       font-size: 39px;
       line-height: 1.08;
-      margin: 12px 0;
     }
 
     .subtitle {
       color: #aaa5b5;
-      line-height: 1.6;
       font-size: 15px;
+      line-height: 1.6;
     }
 
     .search {
       margin-top: 22px;
       padding: 15px 17px;
       border-radius: 17px;
+
       background: #18171e;
       border: 1px solid #2a2731;
+
       color: #85808f;
     }
 
@@ -106,8 +108,8 @@
 
     .section-title {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      justify-content: space-between;
       margin-bottom: 15px;
     }
 
@@ -123,10 +125,12 @@
 
     .feature {
       position: relative;
-      overflow: hidden;
       min-height: 215px;
+      overflow: hidden;
+
       padding: 24px;
       border-radius: 26px;
+
       cursor: pointer;
 
       background:
@@ -143,6 +147,7 @@
       position: absolute;
       right: 16px;
       bottom: -25px;
+
       font-size: 120px;
       font-weight: 900;
       opacity: .1;
@@ -150,9 +155,12 @@
 
     .tag {
       display: inline-block;
+
       padding: 7px 11px;
       border-radius: 999px;
+
       background: rgba(255,255,255,.15);
+
       font-size: 12px;
       font-weight: 800;
     }
@@ -160,12 +168,14 @@
     .feature h3 {
       max-width: 300px;
       margin: 31px 0 10px;
+
       font-size: 28px;
     }
 
     .feature p {
       max-width: 310px;
       margin: 0;
+
       color: #dfd9ff;
       line-height: 1.5;
     }
@@ -178,10 +188,13 @@
     .card {
       display: flex;
       gap: 15px;
+
       padding: 17px;
       border-radius: 19px;
+
       background: #141319;
       border: 1px solid #25222d;
+
       cursor: pointer;
     }
 
@@ -206,12 +219,14 @@
 
     .card p {
       margin: 0;
+
       color: #8d8995;
+
       font-size: 13px;
       line-height: 1.45;
     }
 
-    /* ---------- READER ---------- */
+    /* READER */
 
     .reader {
       display: none;
@@ -246,11 +261,12 @@
     .back {
       width: 42px;
       height: 42px;
+
       border: 0;
       border-radius: 50%;
 
-      color: white;
       background: #1d1a25;
+      color: white;
 
       font-size: 22px;
     }
@@ -264,38 +280,47 @@
     }
 
     .article-meta {
-      color: #8b6cff;
-      font-weight: 800;
       margin-bottom: 24px;
+
+      color: #8b6cff;
+
+      font-weight: 800;
     }
 
     .article {
+      color: #e7e4eb;
+
       font-family: Georgia, serif;
       font-size: 20px;
       line-height: 1.85;
-      color: #e7e4eb;
     }
 
     .word {
       color: #bba8ff;
       font-weight: 700;
+
       border-bottom: 1px dashed #8b6cff;
+
       cursor: pointer;
     }
 
     .word.seen {
-      color: white;
-      background: #443078;
       padding: 2px 4px;
+
+      border: 0;
       border-radius: 5px;
-      border-bottom: 0;
+
+      background: #443078;
+      color: white;
     }
 
-    /* ---------- VOCAB PAGE ---------- */
+    /* VOCABULARY */
 
     .vocab-page {
       display: none;
+
       min-height: 100vh;
+
       padding:
         calc(30px + env(safe-area-inset-top))
         20px
@@ -315,26 +340,99 @@
 
     .vocab-head p {
       margin: 0;
+
       color: #8f8998;
       line-height: 1.5;
     }
 
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 8px;
+
+      margin-top: 22px;
+    }
+
+    .stat {
+      padding: 12px 5px;
+
+      text-align: center;
+
+      border-radius: 15px;
+      border: 1px solid #28242f;
+
+      background: #15131a;
+    }
+
+    .stat-number {
+      display: block;
+
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 4px;
+
+      color: #847e8e;
+
+      font-size: 10px;
+      text-transform: uppercase;
+    }
+
     .vocab-search {
       width: 100%;
-      margin: 22px 0 18px;
+
+      margin: 20px 0 14px;
       padding: 15px 16px;
 
-      border-radius: 16px;
       border: 1px solid #2b2733;
+      border-radius: 16px;
+
+      outline: none;
 
       background: #17151d;
       color: white;
-
-      outline: none;
     }
 
     .vocab-search:focus {
       border-color: #7454ff;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+
+      padding-bottom: 14px;
+
+      scrollbar-width: none;
+    }
+
+    .filters::-webkit-scrollbar {
+      display: none;
+    }
+
+    .filter-btn {
+      flex: 0 0 auto;
+
+      padding: 9px 13px;
+
+      border: 1px solid #302b38;
+      border-radius: 999px;
+
+      background: #17151d;
+      color: #9891a2;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .filter-btn.active {
+      background: #6f46ff;
+      border-color: #6f46ff;
+      color: white;
     }
 
     .vocab-list {
@@ -344,59 +442,80 @@
 
     .vocab-empty {
       padding: 30px 18px;
+
       text-align: center;
-      color: #8f8998;
 
-      border-radius: 18px;
       border: 1px dashed #302b39;
+      border-radius: 18px;
 
+      color: #8f8998;
       line-height: 1.6;
     }
 
     .vocab-card {
       padding: 16px;
+
+      border: 1px solid #27232e;
       border-radius: 18px;
 
       background: #15131a;
-      border: 1px solid #27232e;
-
-      cursor: pointer;
     }
 
-    .vocab-row {
+    .vocab-card-top {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
       gap: 12px;
+    }
+
+    .vocab-card-main {
+      flex: 1;
+      cursor: pointer;
     }
 
     .vocab-word {
       font-size: 21px;
-      font-weight: 800;
+      font-weight: 900;
     }
 
     .vocab-ipa {
       margin-top: 3px;
+
       color: #8f8998;
       font-size: 13px;
     }
 
     .vocab-cn {
-      margin-top: 11px;
+      margin-top: 10px;
+
       color: #c9bcff;
-      font-weight: 700;
+      font-weight: 800;
+    }
+
+    .vocab-meta {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+
+      margin-top: 12px;
+
+      color: #736d7c;
+
+      font-size: 11px;
     }
 
     .status-badge {
+      display: inline-block;
+
       white-space: nowrap;
+
       padding: 6px 9px;
       border-radius: 999px;
 
       background: #292330;
       color: #c8c1d2;
 
-      font-size: 11px;
-      font-weight: 800;
+      font-size: 10px;
+      font-weight: 900;
       text-transform: uppercase;
     }
 
@@ -410,15 +529,30 @@
       color: #9fe0bf;
     }
 
-    /* ---------- WORD SHEET ---------- */
+    .delete-btn {
+      width: 38px;
+      height: 38px;
+
+      border: 1px solid #3a2730;
+      border-radius: 12px;
+
+      background: #21171c;
+      color: #d8839e;
+
+      font-size: 15px;
+    }
+
+    /* WORD SHEET */
 
     .sheet {
       position: fixed;
       left: 50%;
       bottom: -110%;
+
       transform: translateX(-50%);
 
       width: min(520px, 100%);
+
       z-index: 50;
 
       padding:
@@ -448,6 +582,7 @@
       margin: 0 auto 20px;
 
       border-radius: 10px;
+
       background: #4b4653;
     }
 
@@ -470,6 +605,7 @@
 
     .cn {
       margin-bottom: 18px;
+
       color: #c7b9ff;
 
       font-size: 19px;
@@ -478,6 +614,7 @@
 
     .label {
       margin-top: 17px;
+
       color: #817b89;
 
       font-size: 12px;
@@ -495,15 +632,16 @@
       padding: 13px;
 
       border-radius: 14px;
+
       background: #201d28;
 
       line-height: 1.5;
     }
 
     .close {
-      border: 0;
       padding: 10px 16px;
 
+      border: 0;
       border-radius: 12px;
 
       background: #6f46ff;
@@ -516,13 +654,14 @@
       display: flex;
       gap: 8px;
       flex-wrap: wrap;
+
       margin-top: 10px;
     }
 
     .status-btn {
-      border: 1px solid #342f3c;
       padding: 9px 11px;
 
+      border: 1px solid #342f3c;
       border-radius: 12px;
 
       background: #211e27;
@@ -533,17 +672,18 @@
     }
 
     .status-btn.selected {
-      border-color: #6f46ff;
       background: #6f46ff;
+      border-color: #6f46ff;
       color: white;
     }
 
-    /* ---------- NAV ---------- */
+    /* NAV */
 
     .bottom-nav {
       position: fixed;
       left: 50%;
       bottom: 0;
+
       transform: translateX(-50%);
 
       width: min(520px, 100%);
@@ -551,29 +691,33 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
 
+      z-index: 20;
+
       padding:
         11px
         15px
         calc(11px + env(safe-area-inset-bottom));
 
-      z-index: 20;
+      border-top: 1px solid #292631;
 
       background: rgba(18,17,23,.95);
       backdrop-filter: blur(20px);
-
-      border-top: 1px solid #292631;
     }
 
     .nav-item {
-      text-align: center;
       color: #77717f;
+
+      text-align: center;
       font-size: 12px;
+
       cursor: pointer;
     }
 
     .nav-item strong {
       display: block;
+
       margin-bottom: 2px;
+
       font-size: 20px;
     }
 
@@ -913,7 +1057,7 @@
   </div>
 
 
-  <!-- VOCABULARY PAGE -->
+  <!-- VOCABULARY -->
 
   <div
     id="vocabularyPage"
@@ -931,9 +1075,68 @@
       </h1>
 
       <p>
-        你在阅读时点过的单词会自动出现在这里。
-        你还可以给每个词设置学习状态。
+        搜索、筛选和管理你在阅读过程中积累的单词。
       </p>
+
+    </div>
+
+
+    <div class="stats">
+
+      <div class="stat">
+        <span
+          id="statAll"
+          class="stat-number"
+        >
+          0
+        </span>
+
+        <span class="stat-label">
+          All
+        </span>
+      </div>
+
+
+      <div class="stat">
+        <span
+          id="statNew"
+          class="stat-number"
+        >
+          0
+        </span>
+
+        <span class="stat-label">
+          New
+        </span>
+      </div>
+
+
+      <div class="stat">
+        <span
+          id="statLearning"
+          class="stat-number"
+        >
+          0
+        </span>
+
+        <span class="stat-label">
+          Learning
+        </span>
+      </div>
+
+
+      <div class="stat">
+        <span
+          id="statMastered"
+          class="stat-number"
+        >
+          0
+        </span>
+
+        <span class="stat-label">
+          Mastered
+        </span>
+      </div>
 
     </div>
 
@@ -947,6 +1150,46 @@
     />
 
 
+    <div class="filters">
+
+      <button
+        class="filter-btn active"
+        data-filter="all"
+        onclick="setFilter('all')"
+      >
+        All
+      </button>
+
+
+      <button
+        class="filter-btn"
+        data-filter="new"
+        onclick="setFilter('new')"
+      >
+        New
+      </button>
+
+
+      <button
+        class="filter-btn"
+        data-filter="learning"
+        onclick="setFilter('learning')"
+      >
+        Learning
+      </button>
+
+
+      <button
+        class="filter-btn"
+        data-filter="mastered"
+        onclick="setFilter('mastered')"
+      >
+        Mastered
+      </button>
+
+    </div>
+
+
     <div
       id="vocabList"
       class="vocab-list"
@@ -957,7 +1200,7 @@
 </div>
 
 
-<!-- BOTTOM NAV -->
+<!-- NAV -->
 
 <div
   id="nav"
@@ -998,7 +1241,7 @@
     class="nav-item"
     onclick="
       alert(
-        'Profile will be added in a later version.'
+        'Profile will be added later.'
       )
     "
   >
@@ -1014,7 +1257,7 @@
 </div>
 
 
-<!-- WORD DETAIL SHEET -->
+<!-- WORD SHEET -->
 
 <div
   id="sheet"
@@ -1124,7 +1367,7 @@
 
 <script>
 
-  /* ---------- WORD DATA ---------- */
+  /* WORD DATA */
 
   const dictionary = {
 
@@ -1230,7 +1473,7 @@
   };
 
 
-  /* ---------- LOCAL STORAGE ---------- */
+  /* STORAGE */
 
   let history =
     JSON.parse(
@@ -1248,7 +1491,17 @@
     );
 
 
+  let metadata =
+    JSON.parse(
+      localStorage.getItem(
+        "vocabMetadata"
+      ) || "{}"
+    );
+
+
   let currentWord = null;
+
+  let currentFilter = "all";
 
 
   history.forEach(word => {
@@ -1259,13 +1512,75 @@
 
     }
 
+
+    if (!metadata[word]) {
+
+      metadata[word] = {
+
+        views: 1,
+
+        lastViewed:
+          new Date().toISOString()
+
+      };
+
+    }
+
   });
 
 
   saveStatuses();
+  saveMetadata();
 
 
-  /* ---------- ARTICLE ---------- */
+  /* STORAGE HELPERS */
+
+  function saveHistory() {
+
+    localStorage.setItem(
+
+      "vocabHistory",
+
+      JSON.stringify(
+        history
+      )
+
+    );
+
+  }
+
+
+  function saveStatuses() {
+
+    localStorage.setItem(
+
+      "vocabStatuses",
+
+      JSON.stringify(
+        statuses
+      )
+
+    );
+
+  }
+
+
+  function saveMetadata() {
+
+    localStorage.setItem(
+
+      "vocabMetadata",
+
+      JSON.stringify(
+        metadata
+      )
+
+    );
+
+  }
+
+
+  /* ARTICLE */
 
   function openArticle() {
 
@@ -1292,7 +1607,9 @@
 
 
     document
-      .getElementById("nav")
+      .getElementById(
+        "nav"
+      )
       .style
       .display = "none";
 
@@ -1308,7 +1625,9 @@
   function closeArticle() {
 
     document
-      .getElementById("reader")
+      .getElementById(
+        "reader"
+      )
       .classList
       .remove("open");
 
@@ -1318,7 +1637,7 @@
   }
 
 
-  /* ---------- WORD DETAIL ---------- */
+  /* WORD DETAIL */
 
   function showWord(word) {
 
@@ -1343,14 +1662,16 @@
       .getElementById(
         "sheetIPA"
       )
-      .textContent = data.ipa;
+      .textContent =
+        data.ipa;
 
 
     document
       .getElementById(
         "sheetCN"
       )
-      .textContent = data.cn;
+      .textContent =
+        data.cn;
 
 
     document
@@ -1391,14 +1712,7 @@
 
       history.push(word);
 
-
-      localStorage.setItem(
-
-        "vocabHistory",
-
-        JSON.stringify(history)
-
-      );
+      saveHistory();
 
     }
 
@@ -1410,10 +1724,33 @@
       statuses[word] =
         "new";
 
-
       saveStatuses();
 
     }
+
+
+    if (
+      !metadata[word]
+    ) {
+
+      metadata[word] = {
+
+        views: 0,
+
+        lastViewed: null
+
+      };
+
+    }
+
+
+    metadata[word].views += 1;
+
+    metadata[word].lastViewed =
+      new Date().toISOString();
+
+
+    saveMetadata();
 
 
     renderStatusButtons();
@@ -1421,6 +1758,8 @@
     updateSeenWords();
 
     updateHistory();
+
+    updateStats();
 
     renderVocabulary();
 
@@ -1439,22 +1778,7 @@
   }
 
 
-  /* ---------- LEARNING STATUS ---------- */
-
-  function saveStatuses() {
-
-    localStorage.setItem(
-
-      "vocabStatuses",
-
-      JSON.stringify(
-        statuses
-      )
-
-    );
-
-  }
-
+  /* STATUS */
 
   function setStatus(status) {
 
@@ -1468,6 +1792,8 @@
     saveStatuses();
 
     renderStatusButtons();
+
+    updateStats();
 
     renderVocabulary();
 
@@ -1499,12 +1825,14 @@
   }
 
 
-  /* ---------- NAVIGATION ---------- */
+  /* NAVIGATION */
 
   function showHome() {
 
     document
-      .getElementById("reader")
+      .getElementById(
+        "reader"
+      )
       .classList
       .remove("open");
 
@@ -1518,13 +1846,17 @@
 
 
     document
-      .getElementById("home")
+      .getElementById(
+        "home"
+      )
       .classList
       .remove("hidden");
 
 
     document
-      .getElementById("nav")
+      .getElementById(
+        "nav"
+      )
       .style
       .display = "grid";
 
@@ -1547,11 +1879,7 @@
 
     updateHistory();
 
-
-    window.scrollTo(
-      0,
-      0
-    );
+    window.scrollTo(0,0);
 
   }
 
@@ -1559,13 +1887,17 @@
   function showVocabulary() {
 
     document
-      .getElementById("reader")
+      .getElementById(
+        "reader"
+      )
       .classList
       .remove("open");
 
 
     document
-      .getElementById("home")
+      .getElementById(
+        "home"
+      )
       .classList
       .add("hidden");
 
@@ -1579,7 +1911,9 @@
 
 
     document
-      .getElementById("nav")
+      .getElementById(
+        "nav"
+      )
       .style
       .display = "grid";
 
@@ -1600,18 +1934,16 @@
       .add("active");
 
 
+    updateStats();
+
     renderVocabulary();
 
-
-    window.scrollTo(
-      0,
-      0
-    );
+    window.scrollTo(0,0);
 
   }
 
 
-  /* ---------- WORD CLICK ---------- */
+  /* WORD CLICK */
 
   document
     .querySelectorAll(
@@ -1634,7 +1966,7 @@
     });
 
 
-  /* ---------- HIGHLIGHT WORDS ---------- */
+  /* SEEN WORDS */
 
   function updateSeenWords() {
 
@@ -1654,6 +1986,12 @@
             .classList
             .add("seen");
 
+        } else {
+
+          element
+            .classList
+            .remove("seen");
+
         }
 
       });
@@ -1661,7 +1999,7 @@
   }
 
 
-  /* ---------- HOME HISTORY ---------- */
+  /* HOME HISTORY */
 
   function updateHistory() {
 
@@ -1722,7 +2060,246 @@
   }
 
 
-  /* ---------- VOCABULARY PAGE ---------- */
+  /* STATS */
+
+  function updateStats() {
+
+    const all =
+      history.length;
+
+
+    const newCount =
+      history.filter(
+        word =>
+          (
+            statuses[word] ||
+            "new"
+          ) === "new"
+      )
+      .length;
+
+
+    const learningCount =
+      history.filter(
+        word =>
+          statuses[word] ===
+          "learning"
+      )
+      .length;
+
+
+    const masteredCount =
+      history.filter(
+        word =>
+          statuses[word] ===
+          "mastered"
+      )
+      .length;
+
+
+    document
+      .getElementById(
+        "statAll"
+      )
+      .textContent =
+        all;
+
+
+    document
+      .getElementById(
+        "statNew"
+      )
+      .textContent =
+        newCount;
+
+
+    document
+      .getElementById(
+        "statLearning"
+      )
+      .textContent =
+        learningCount;
+
+
+    document
+      .getElementById(
+        "statMastered"
+      )
+      .textContent =
+        masteredCount;
+
+  }
+
+
+  /* FILTER */
+
+  function setFilter(filter) {
+
+    currentFilter =
+      filter;
+
+
+    document
+      .querySelectorAll(
+        ".filter-btn"
+      )
+      .forEach(button => {
+
+        button
+          .classList
+          .toggle(
+
+            "active",
+
+            button.dataset.filter ===
+            filter
+
+          );
+
+      });
+
+
+    renderVocabulary();
+
+  }
+
+
+  /* DELETE */
+
+  function deleteWord(
+    word,
+    event
+  ) {
+
+    event.stopPropagation();
+
+
+    const confirmed =
+      confirm(
+        `Remove "${word}" from your vocabulary?`
+      );
+
+
+    if (!confirmed) return;
+
+
+    history =
+      history.filter(
+        item =>
+          item !== word
+      );
+
+
+    delete statuses[word];
+
+    delete metadata[word];
+
+
+    saveHistory();
+
+    saveStatuses();
+
+    saveMetadata();
+
+
+    updateHistory();
+
+    updateSeenWords();
+
+    updateStats();
+
+    renderVocabulary();
+
+  }
+
+
+  /* TIME FORMAT */
+
+  function formatTime(
+    isoString
+  ) {
+
+    if (!isoString) {
+
+      return "Never";
+
+    }
+
+
+    const date =
+      new Date(
+        isoString
+      );
+
+
+    const diff =
+      Date.now() -
+      date.getTime();
+
+
+    const minutes =
+      Math.floor(
+        diff /
+        60000
+      );
+
+
+    if (
+      minutes < 1
+    ) {
+
+      return "Just now";
+
+    }
+
+
+    if (
+      minutes < 60
+    ) {
+
+      return (
+        minutes +
+        " min ago"
+      );
+
+    }
+
+
+    const hours =
+      Math.floor(
+        minutes /
+        60
+      );
+
+
+    if (
+      hours < 24
+    ) {
+
+      return (
+        hours +
+        " h ago"
+      );
+
+    }
+
+
+    const days =
+      Math.floor(
+        hours /
+        24
+      );
+
+
+    return (
+      days +
+      " d ago"
+    );
+
+  }
+
+
+  /* VOCABULARY RENDER */
 
   function renderVocabulary() {
 
@@ -1736,16 +2313,13 @@
     if (!list) return;
 
 
-    const searchBox =
-      document
-        .getElementById(
-          "vocabSearch"
-        );
-
-
     const query =
+
       (
-        searchBox
+        document
+          .getElementById(
+            "vocabSearch"
+          )
           ?.value || ""
       )
 
@@ -1754,20 +2328,40 @@
         .toLowerCase();
 
 
-    const words =
-
+    let words =
       [...history]
+        .reverse();
 
-        .reverse()
 
-        .filter(
+    words =
+      words.filter(
+        word =>
+
+          word
+            .toLowerCase()
+            .includes(query)
+
+      );
+
+
+    if (
+      currentFilter !==
+      "all"
+    ) {
+
+      words =
+        words.filter(
           word =>
 
-            word
-              .toLowerCase()
-              .includes(query)
+            (
+              statuses[word] ||
+              "new"
+            ) ===
+            currentFilter
 
         );
+
+    }
 
 
     if (
@@ -1781,7 +2375,7 @@
         (
           history.length
 
-            ? "No matching words."
+            ? "No words match this filter."
 
             : "还没有词汇。去阅读文章，点击一个紫色单词试试看。"
         )
@@ -1811,42 +2405,94 @@
             "new";
 
 
+          const meta =
+            metadata[word] || {};
+
+
+          const views =
+            meta.views || 0;
+
+
+          const lastViewed =
+            formatTime(
+              meta.lastViewed
+            );
+
+
           return `
 
             <div
               class="vocab-card"
-              onclick="showWord('${word}')"
             >
 
-              <div class="vocab-row">
+              <div
+                class="vocab-card-top"
+              >
 
-                <div>
+                <div
+                  class="vocab-card-main"
+                  onclick="showWord('${word}')"
+                >
 
-                  <div class="vocab-word">
+                  <div
+                    class="vocab-word"
+                  >
                     ${word}
                   </div>
 
-                  <div class="vocab-ipa">
+
+                  <div
+                    class="vocab-ipa"
+                  >
                     ${data.ipa || ""}
+                  </div>
+
+
+                  <div
+                    class="vocab-cn"
+                  >
+                    ${data.cn || ""}
+                  </div>
+
+
+                  <div
+                    class="vocab-meta"
+                  >
+
+                    <span>
+                      Viewed ${views}×
+                    </span>
+
+                    <span>
+                      ${lastViewed}
+                    </span>
+
+                    <span
+                      class="
+                        status-badge
+                        ${status}
+                      "
+                    >
+                      ${status}
+                    </span>
+
                   </div>
 
                 </div>
 
 
-                <span
-                  class="
-                    status-badge
-                    ${status}
+                <button
+                  class="delete-btn"
+                  onclick="
+                    deleteWord(
+                      '${word}',
+                      event
+                    )
                   "
                 >
-                  ${status}
-                </span>
+                  ×
+                </button>
 
-              </div>
-
-
-              <div class="vocab-cn">
-                ${data.cn || ""}
               </div>
 
             </div>
@@ -1860,11 +2506,13 @@
   }
 
 
-  /* ---------- INITIALIZE ---------- */
+  /* INITIALIZE */
 
   updateHistory();
 
   updateSeenWords();
+
+  updateStats();
 
   renderVocabulary();
 
