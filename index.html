@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+
   <meta name="theme-color" content="#08080d" />
+
   <title>Vocab Reader</title>
 
   <style>
@@ -15,14 +20,23 @@
 
     body {
       margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
-                   "Segoe UI", sans-serif;
       background: #08080d;
       color: white;
+      font-family:
+        -apple-system,
+        BlinkMacSystemFont,
+        "SF Pro Display",
+        "Segoe UI",
+        sans-serif;
+    }
+
+    button,
+    input {
+      font: inherit;
     }
 
     button {
-      font: inherit;
+      cursor: pointer;
     }
 
     .app {
@@ -32,81 +46,103 @@
       padding-bottom: 100px;
     }
 
+    .hidden {
+      display: none !important;
+    }
+
+    /* ---------- HOME ---------- */
+
     .top {
       padding:
-        calc(24px + env(safe-area-inset-top))
-        22px 20px;
+        calc(28px + env(safe-area-inset-top))
+        22px
+        24px;
+
       background:
-        radial-gradient(circle at 85% 10%, #6d42ff 0, transparent 32%),
-        linear-gradient(180deg, #17111f, #08080d);
+        radial-gradient(
+          circle at 88% 8%,
+          #6d42ff 0,
+          transparent 34%
+        ),
+        linear-gradient(
+          180deg,
+          #17111f,
+          #08080d
+        );
     }
 
     .mini {
       color: #9c8aff;
       font-size: 13px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
       text-transform: uppercase;
     }
 
     h1 {
-      font-size: 38px;
-      line-height: 1.05;
-      margin: 10px 0;
+      font-size: 39px;
+      line-height: 1.08;
+      margin: 12px 0;
     }
 
     .subtitle {
       color: #aaa5b5;
-      line-height: 1.5;
+      line-height: 1.6;
       font-size: 15px;
     }
 
     .search {
-      margin-top: 20px;
+      margin-top: 22px;
+      padding: 15px 17px;
+      border-radius: 17px;
       background: #18171e;
-      border: 1px solid #292631;
-      padding: 14px 16px;
-      border-radius: 16px;
+      border: 1px solid #2a2731;
       color: #85808f;
     }
 
     .section {
-      padding: 24px 20px 0;
+      padding: 25px 20px 0;
     }
 
     .section-title {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       margin-bottom: 15px;
     }
 
     .section-title h2 {
       margin: 0;
-      font-size: 21px;
+      font-size: 22px;
     }
 
     .section-title span {
-      color: #8b6cff;
+      color: #9173ff;
       font-size: 14px;
     }
 
     .feature {
-      border-radius: 25px;
-      padding: 23px;
-      min-height: 205px;
-      background:
-        linear-gradient(135deg, #6d42ff, #342079 65%, #17111f);
       position: relative;
       overflow: hidden;
+      min-height: 215px;
+      padding: 24px;
+      border-radius: 26px;
       cursor: pointer;
+
+      background:
+        linear-gradient(
+          135deg,
+          #7042ff,
+          #41289c 65%,
+          #181020
+        );
     }
 
     .feature::after {
       content: "Aa";
       position: absolute;
-      right: 18px;
-      bottom: -20px;
+      right: 16px;
+      bottom: -25px;
       font-size: 120px;
       font-weight: 900;
       opacity: .1;
@@ -114,24 +150,24 @@
 
     .tag {
       display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      background: rgba(255,255,255,.16);
-      padding: 7px 10px;
+      padding: 7px 11px;
       border-radius: 999px;
+      background: rgba(255,255,255,.15);
+      font-size: 12px;
+      font-weight: 800;
     }
 
     .feature h3 {
-      font-size: 27px;
-      max-width: 280px;
-      margin: 30px 0 10px;
+      max-width: 300px;
+      margin: 31px 0 10px;
+      font-size: 28px;
     }
 
     .feature p {
-      color: #ded8ff;
+      max-width: 310px;
       margin: 0;
-      max-width: 290px;
-      line-height: 1.45;
+      color: #dfd9ff;
+      line-height: 1.5;
     }
 
     .cards {
@@ -140,12 +176,12 @@
     }
 
     .card {
-      background: #141319;
-      border: 1px solid #25222d;
-      padding: 17px;
-      border-radius: 19px;
       display: flex;
       gap: 15px;
+      padding: 17px;
+      border-radius: 19px;
+      background: #141319;
+      border: 1px solid #25222d;
       cursor: pointer;
     }
 
@@ -153,15 +189,18 @@
       width: 58px;
       min-width: 58px;
       height: 58px;
-      border-radius: 16px;
+
       display: grid;
       place-items: center;
-      font-size: 27px;
+
+      border-radius: 16px;
       background: #221a36;
+
+      font-size: 27px;
     }
 
     .card h3 {
-      margin: 1px 0 5px;
+      margin: 2px 0 5px;
       font-size: 17px;
     }
 
@@ -172,36 +211,7 @@
       line-height: 1.45;
     }
 
-    .bottom-nav {
-      position: fixed;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(520px,100%);
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      background: rgba(18,17,23,.94);
-      backdrop-filter: blur(20px);
-      border-top: 1px solid #292631;
-      padding: 11px 15px calc(11px + env(safe-area-inset-bottom));
-      z-index: 20;
-    }
-
-    .nav-item {
-      text-align: center;
-      color: #77717f;
-      font-size: 12px;
-    }
-
-    .nav-item strong {
-      display: block;
-      font-size: 20px;
-      margin-bottom: 2px;
-    }
-
-    .nav-item.active {
-      color: #9b7cff;
-    }
+    /* ---------- READER ---------- */
 
     .reader {
       display: none;
@@ -213,33 +223,36 @@
       display: block;
     }
 
-    .home.hidden {
-      display: none;
-    }
-
     .reader-head {
       position: sticky;
       top: 0;
       z-index: 10;
-      padding:
-        calc(14px + env(safe-area-inset-top))
-        18px 14px;
-      background: rgba(11,10,16,.92);
-      backdrop-filter: blur(20px);
-      border-bottom: 1px solid #25222d;
+
       display: flex;
       align-items: center;
       gap: 15px;
+
+      padding:
+        calc(14px + env(safe-area-inset-top))
+        18px
+        14px;
+
+      background: rgba(11,10,16,.93);
+      backdrop-filter: blur(20px);
+
+      border-bottom: 1px solid #25222d;
     }
 
     .back {
-      border: 0;
       width: 42px;
       height: 42px;
+      border: 0;
       border-radius: 50%;
+
       color: white;
       background: #1d1a25;
-      font-size: 21px;
+
+      font-size: 22px;
     }
 
     .reader-content {
@@ -247,13 +260,13 @@
     }
 
     .reader-content h1 {
-      font-size: 32px;
+      font-size: 33px;
     }
 
     .article-meta {
       color: #8b6cff;
-      font-weight: 700;
-      margin-bottom: 25px;
+      font-weight: 800;
+      margin-bottom: 24px;
     }
 
     .article {
@@ -265,32 +278,163 @@
 
     .word {
       color: #bba8ff;
+      font-weight: 700;
       border-bottom: 1px dashed #8b6cff;
       cursor: pointer;
-      font-weight: 600;
     }
 
     .word.seen {
       color: white;
-      font-weight: 800;
       background: #443078;
-      padding: 1px 4px;
+      padding: 2px 4px;
       border-radius: 5px;
+      border-bottom: 0;
     }
+
+    /* ---------- VOCAB PAGE ---------- */
+
+    .vocab-page {
+      display: none;
+      min-height: 100vh;
+      padding:
+        calc(30px + env(safe-area-inset-top))
+        20px
+        120px;
+
+      background: #0b0a10;
+    }
+
+    .vocab-page.open {
+      display: block;
+    }
+
+    .vocab-head h1 {
+      margin: 8px 0;
+      font-size: 35px;
+    }
+
+    .vocab-head p {
+      margin: 0;
+      color: #8f8998;
+      line-height: 1.5;
+    }
+
+    .vocab-search {
+      width: 100%;
+      margin: 22px 0 18px;
+      padding: 15px 16px;
+
+      border-radius: 16px;
+      border: 1px solid #2b2733;
+
+      background: #17151d;
+      color: white;
+
+      outline: none;
+    }
+
+    .vocab-search:focus {
+      border-color: #7454ff;
+    }
+
+    .vocab-list {
+      display: grid;
+      gap: 12px;
+    }
+
+    .vocab-empty {
+      padding: 30px 18px;
+      text-align: center;
+      color: #8f8998;
+
+      border-radius: 18px;
+      border: 1px dashed #302b39;
+
+      line-height: 1.6;
+    }
+
+    .vocab-card {
+      padding: 16px;
+      border-radius: 18px;
+
+      background: #15131a;
+      border: 1px solid #27232e;
+
+      cursor: pointer;
+    }
+
+    .vocab-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .vocab-word {
+      font-size: 21px;
+      font-weight: 800;
+    }
+
+    .vocab-ipa {
+      margin-top: 3px;
+      color: #8f8998;
+      font-size: 13px;
+    }
+
+    .vocab-cn {
+      margin-top: 11px;
+      color: #c9bcff;
+      font-weight: 700;
+    }
+
+    .status-badge {
+      white-space: nowrap;
+      padding: 6px 9px;
+      border-radius: 999px;
+
+      background: #292330;
+      color: #c8c1d2;
+
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .status-badge.learning {
+      background: #36256a;
+      color: #cdbfff;
+    }
+
+    .status-badge.mastered {
+      background: #17382c;
+      color: #9fe0bf;
+    }
+
+    /* ---------- WORD SHEET ---------- */
 
     .sheet {
       position: fixed;
       left: 50%;
+      bottom: -110%;
       transform: translateX(-50%);
-      bottom: -100%;
-      width: min(520px,100%);
-      background: #17151d;
-      border-top: 1px solid #302c38;
-      border-radius: 27px 27px 0 0;
-      padding: 10px 22px calc(30px + env(safe-area-inset-bottom));
-      transition: .3s ease;
+
+      width: min(520px, 100%);
       z-index: 50;
-      box-shadow: 0 -20px 60px rgba(0,0,0,.5);
+
+      padding:
+        10px
+        22px
+        calc(30px + env(safe-area-inset-bottom));
+
+      border-radius: 27px 27px 0 0;
+      border-top: 1px solid #302c38;
+
+      background: #17151d;
+
+      box-shadow:
+        0 -20px 60px rgba(0,0,0,.55);
+
+      transition: .3s ease;
     }
 
     .sheet.show {
@@ -300,40 +444,45 @@
     .handle {
       width: 45px;
       height: 5px;
+
+      margin: 0 auto 20px;
+
       border-radius: 10px;
       background: #4b4653;
-      margin: 0 auto 20px;
     }
 
     .word-title {
       display: flex;
       justify-content: space-between;
-      align-items: start;
+      align-items: flex-start;
+      gap: 15px;
     }
 
     .word-title h2 {
-      font-size: 30px;
       margin: 0;
+      font-size: 30px;
     }
 
     .ipa {
-      color: #988fa4;
       margin: 5px 0 20px;
+      color: #988fa4;
     }
 
     .cn {
-      font-size: 19px;
-      font-weight: 700;
-      color: #c7b9ff;
       margin-bottom: 18px;
+      color: #c7b9ff;
+
+      font-size: 19px;
+      font-weight: 800;
     }
 
     .label {
-      color: #817b89;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
       margin-top: 17px;
+      color: #817b89;
+
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
     }
 
     .definition {
@@ -342,20 +491,94 @@
     }
 
     .example {
-      background: #201d28;
-      border-radius: 14px;
-      padding: 13px;
       margin-top: 8px;
+      padding: 13px;
+
+      border-radius: 14px;
+      background: #201d28;
+
       line-height: 1.5;
     }
 
     .close {
-      background: #6f46ff;
       border: 0;
-      color: white;
       padding: 10px 16px;
+
       border-radius: 12px;
-      font-weight: 700;
+
+      background: #6f46ff;
+      color: white;
+
+      font-weight: 800;
+    }
+
+    .status-picker {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .status-btn {
+      border: 1px solid #342f3c;
+      padding: 9px 11px;
+
+      border-radius: 12px;
+
+      background: #211e27;
+      color: #b8b1c1;
+
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .status-btn.selected {
+      border-color: #6f46ff;
+      background: #6f46ff;
+      color: white;
+    }
+
+    /* ---------- NAV ---------- */
+
+    .bottom-nav {
+      position: fixed;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+
+      width: min(520px, 100%);
+
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+
+      padding:
+        11px
+        15px
+        calc(11px + env(safe-area-inset-bottom));
+
+      z-index: 20;
+
+      background: rgba(18,17,23,.95);
+      backdrop-filter: blur(20px);
+
+      border-top: 1px solid #292631;
+    }
+
+    .nav-item {
+      text-align: center;
+      color: #77717f;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .nav-item strong {
+      display: block;
+      margin-bottom: 2px;
+      font-size: 20px;
+    }
+
+    .nav-item.active {
+      color: #9b7cff;
     }
   </style>
 </head>
@@ -364,12 +587,20 @@
 
 <div class="app">
 
-  <div id="home" class="home">
+  <!-- HOME -->
+
+  <div id="home">
 
     <header class="top">
-      <div class="mini">AI English Learning</div>
 
-      <h1>Read.<br>Tap. Learn.</h1>
+      <div class="mini">
+        AI English Learning
+      </div>
+
+      <h1>
+        Read.<br>
+        Tap. Learn.
+      </h1>
 
       <div class="subtitle">
         阅读真实英文内容。遇到陌生单词时直接点击，
@@ -379,25 +610,39 @@
       <div class="search">
         🔎 Search articles, apps and topics
       </div>
+
     </header>
 
+
     <section class="section">
+
       <div class="section-title">
         <h2>Featured</h2>
         <span>Today</span>
       </div>
 
-      <div class="feature" onclick="openArticle()">
-        <span class="tag">TECHNOLOGY</span>
+      <div
+        class="feature"
+        onclick="openArticle()"
+      >
 
-        <h3>The next era of artificial intelligence</h3>
+        <span class="tag">
+          TECHNOLOGY
+        </span>
+
+        <h3>
+          The next era of artificial intelligence
+        </h3>
 
         <p>
-          Learn English through a short article about technology,
-          business and AI.
+          Learn English through a short article
+          about technology, business and AI.
         </p>
+
       </div>
+
     </section>
+
 
     <section class="section">
 
@@ -408,70 +653,151 @@
 
       <div class="cards">
 
-        <div class="card" onclick="openArticle()">
-          <div class="icon">🤖</div>
+        <div
+          class="card"
+          onclick="openArticle()"
+        >
+
+          <div class="icon">
+            🤖
+          </div>
+
           <div>
-            <h3>Artificial Intelligence</h3>
+            <h3>
+              Artificial Intelligence
+            </h3>
+
             <p>
-              Technology, products, startups and the future of work.
+              Technology, products, startups
+              and the future of work.
             </p>
           </div>
+
         </div>
 
-        <div class="card">
-          <div class="icon">📈</div>
-          <div>
-            <h3>Business & Marketing</h3>
-            <p>
-              Build practical vocabulary for global business.
-            </p>
-          </div>
-        </div>
 
         <div class="card">
-          <div class="icon">🌍</div>
+
+          <div class="icon">
+            📈
+          </div>
+
           <div>
-            <h3>World & Ideas</h3>
+            <h3>
+              Business & Marketing
+            </h3>
+
             <p>
-              Read about economics, society and new ideas.
+              Build practical vocabulary
+              for global business.
             </p>
           </div>
+
+        </div>
+
+
+        <div class="card">
+
+          <div class="icon">
+            🌍
+          </div>
+
+          <div>
+            <h3>
+              World & Ideas
+            </h3>
+
+            <p>
+              Read about economics,
+              society and new ideas.
+            </p>
+          </div>
+
         </div>
 
       </div>
+
     </section>
 
+
     <section class="section">
+
       <div class="section-title">
-        <h2>Your vocabulary</h2>
-        <span id="count">0 words</span>
+
+        <h2>
+          Your vocabulary
+        </h2>
+
+        <span id="count">
+          0 words
+        </span>
+
       </div>
 
-      <div class="card">
-        <div class="icon">Aa</div>
-        <div>
-          <h3>Words you've explored</h3>
-          <p id="historyText">
-            Tap words while reading and they will appear here.
-          </p>
+      <div
+        class="card"
+        onclick="showVocabulary()"
+      >
+
+        <div class="icon">
+          Aa
         </div>
+
+        <div>
+
+          <h3>
+            Words you've explored
+          </h3>
+
+          <p id="historyText">
+            Tap words while reading and
+            they will appear here.
+          </p>
+
+        </div>
+
       </div>
+
     </section>
 
   </div>
 
 
-  <div id="reader" class="reader">
+  <!-- READER -->
+
+  <div
+    id="reader"
+    class="reader"
+  >
 
     <div class="reader-head">
-      <button class="back" onclick="closeArticle()">‹</button>
+
+      <button
+        class="back"
+        onclick="closeArticle()"
+      >
+        ‹
+      </button>
+
       <div>
-        <strong>AI & Technology</strong>
-        <div style="font-size:12px;color:#7f7888">
+
+        <strong>
+          AI & Technology
+        </strong>
+
+        <div
+          style="
+            font-size:12px;
+            color:#7f7888;
+          "
+        >
           Interactive Reading
         </div>
+
       </div>
+
     </div>
+
 
     <div class="reader-content">
 
@@ -479,300 +805,1068 @@
         6 MIN READ · INTERMEDIATE
       </div>
 
-      <h1>The next era of artificial intelligence</h1>
+      <h1>
+        The next era of artificial intelligence
+      </h1>
 
       <div class="article">
 
         <p>
-          Artificial intelligence is moving from an
-          <span class="word" data-word="emerging">emerging</span>
-          technology into a powerful part of everyday business.
-          Companies are increasingly using AI to improve
-          productivity, analyze information and create entirely
+          Artificial intelligence is moving
+          from an
+
+          <span
+            class="word"
+            data-word="emerging"
+          >
+            emerging
+          </span>
+
+          technology into a powerful part
+          of everyday business.
+
+          Companies are increasingly using AI
+          to improve productivity, analyze
+          information and create entirely
           new products.
         </p>
 
+
         <p>
           This shift is creating significant
-          <span class="word" data-word="momentum">momentum</span>
-          across the technology industry. What once seemed
-          experimental is becoming a core part of how modern
-          companies operate.
+
+          <span
+            class="word"
+            data-word="momentum"
+          >
+            momentum
+          </span>
+
+          across the technology industry.
+
+          What once seemed experimental
+          is becoming a core part of how
+          modern companies operate.
         </p>
+
 
         <p>
           The broader
-          <span class="word" data-word="landscape">landscape</span>
-          is also changing quickly. Businesses must determine
-          where AI can create genuine value rather than simply
-          following trends.
+
+          <span
+            class="word"
+            data-word="landscape"
+          >
+            landscape
+          </span>
+
+          is also changing quickly.
+
+          Businesses must determine
+          where AI can create genuine value
+          rather than simply following trends.
         </p>
 
-        <p>
-          For marketers, the opportunity is particularly
-          <span class="word" data-word="remarkable">remarkable</span>.
-          AI can help teams understand customers, generate ideas
-          and systematically test new approaches.
-        </p>
 
         <p>
-          However, sustainable progress still requires
-          <span class="word" data-word="rigorous">rigorous</span>
-          thinking. Technology alone does not create a successful
-          product; companies must understand users, markets and
-          the problems they are trying to solve.
+          For marketers, the opportunity
+          is particularly
+
+          <span
+            class="word"
+            data-word="remarkable"
+          >
+            remarkable
+          </span>.
+
+          AI can help teams understand customers,
+          generate ideas and systematically
+          test new approaches.
+        </p>
+
+
+        <p>
+          However, sustainable progress
+          still requires
+
+          <span
+            class="word"
+            data-word="rigorous"
+          >
+            rigorous
+          </span>
+
+          thinking.
+
+          Technology alone does not create
+          a successful product.
+
+          Companies must understand users,
+          markets and the problems they
+          are trying to solve.
         </p>
 
       </div>
+
     </div>
+
+  </div>
+
+
+  <!-- VOCABULARY PAGE -->
+
+  <div
+    id="vocabularyPage"
+    class="vocab-page"
+  >
+
+    <div class="vocab-head">
+
+      <div class="mini">
+        Your learning memory
+      </div>
+
+      <h1>
+        Vocabulary
+      </h1>
+
+      <p>
+        你在阅读时点过的单词会自动出现在这里。
+        你还可以给每个词设置学习状态。
+      </p>
+
+    </div>
+
+
+    <input
+      id="vocabSearch"
+      class="vocab-search"
+      type="search"
+      placeholder="Search your vocabulary"
+      oninput="renderVocabulary()"
+    />
+
+
+    <div
+      id="vocabList"
+      class="vocab-list"
+    ></div>
+
   </div>
 
 </div>
 
 
-<div class="bottom-nav" id="nav">
+<!-- BOTTOM NAV -->
 
-  <div class="nav-item active">
-    <strong>⌂</strong>
+<div
+  id="nav"
+  class="bottom-nav"
+>
+
+  <div
+    id="navDiscover"
+    class="nav-item active"
+    onclick="showHome()"
+  >
+
+    <strong>
+      ⌂
+    </strong>
+
     Discover
+
   </div>
 
-  <div class="nav-item">
-    <strong>◈</strong>
+
+  <div
+    id="navVocabulary"
+    class="nav-item"
+    onclick="showVocabulary()"
+  >
+
+    <strong>
+      ◈
+    </strong>
+
     Vocabulary
+
   </div>
 
-  <div class="nav-item">
-    <strong>●</strong>
+
+  <div
+    class="nav-item"
+    onclick="
+      alert(
+        'Profile will be added in a later version.'
+      )
+    "
+  >
+
+    <strong>
+      ●
+    </strong>
+
     Profile
+
   </div>
 
 </div>
 
 
-<div class="sheet" id="sheet">
+<!-- WORD DETAIL SHEET -->
+
+<div
+  id="sheet"
+  class="sheet"
+>
 
   <div class="handle"></div>
 
+
   <div class="word-title">
+
     <div>
+
       <h2 id="sheetWord"></h2>
-      <div class="ipa" id="sheetIPA"></div>
+
+      <div
+        id="sheetIPA"
+        class="ipa"
+      ></div>
+
     </div>
 
-    <button class="close" onclick="closeSheet()">Done</button>
+
+    <button
+      class="close"
+      onclick="closeSheet()"
+    >
+      Done
+    </button>
+
   </div>
 
-  <div class="cn" id="sheetCN"></div>
 
-  <div class="label">Meaning</div>
-  <div class="definition" id="sheetDefinition"></div>
+  <div
+    id="sheetCN"
+    class="cn"
+  ></div>
 
-  <div class="label">Example</div>
-  <div class="example" id="sheetExample"></div>
 
-  <div class="label">Collocation</div>
-  <div class="definition" id="sheetCollocation"></div>
+  <div class="label">
+    Meaning
+  </div>
+
+  <div
+    id="sheetDefinition"
+    class="definition"
+  ></div>
+
+
+  <div class="label">
+    Example
+  </div>
+
+  <div
+    id="sheetExample"
+    class="example"
+  ></div>
+
+
+  <div class="label">
+    Collocation
+  </div>
+
+  <div
+    id="sheetCollocation"
+    class="definition"
+  ></div>
+
+
+  <div class="label">
+    Learning Status
+  </div>
+
+
+  <div class="status-picker">
+
+    <button
+      class="status-btn"
+      data-status="new"
+      onclick="setStatus('new')"
+    >
+      New
+    </button>
+
+
+    <button
+      class="status-btn"
+      data-status="learning"
+      onclick="setStatus('learning')"
+    >
+      Learning
+    </button>
+
+
+    <button
+      class="status-btn"
+      data-status="mastered"
+      onclick="setStatus('mastered')"
+    >
+      Mastered
+    </button>
+
+  </div>
 
 </div>
 
 
 <script>
 
-const dictionary = {
+  /* ---------- WORD DATA ---------- */
 
-  emerging: {
-    ipa: "/ɪˈmɜːrdʒɪŋ/",
-    cn: "新兴的；正在出现的",
-    definition:
-      "Beginning to become important, noticeable, or established.",
-    example:
-      "AI is creating opportunities in many emerging industries.",
-    collocation:
-      "emerging market · emerging technology · emerging trend"
-  },
+  const dictionary = {
 
-  momentum: {
-    ipa: "/moʊˈmentəm/",
-    cn: "势头；动力；发展势能",
-    definition:
-      "The force or progress that allows something to continue growing.",
-    example:
-      "The company gained momentum after launching its new product.",
-    collocation:
-      "gain momentum · maintain momentum · strong momentum"
-  },
+    emerging: {
 
-  landscape: {
-    ipa: "/ˈlændskeɪp/",
-    cn: "格局；环境；领域形势",
-    definition:
-      "The overall situation or environment within a particular field.",
-    example:
-      "Artificial intelligence is reshaping the business landscape.",
-    collocation:
-      "business landscape · competitive landscape · digital landscape"
-  },
+      ipa:
+        "/ɪˈmɜːrdʒɪŋ/",
 
-  remarkable: {
-    ipa: "/rɪˈmɑːrkəbəl/",
-    cn: "非凡的；显著的；引人注目的",
-    definition:
-      "Unusual or impressive enough to deserve attention.",
-    example:
-      "The technology has made remarkable progress in recent years.",
-    collocation:
-      "remarkable growth · remarkable achievement · remarkable progress"
-  },
+      cn:
+        "新兴的；正在出现的",
 
-  rigorous: {
-    ipa: "/ˈrɪɡərəs/",
-    cn: "严谨的；严格的",
-    definition:
-      "Extremely thorough, careful, and precise.",
-    example:
-      "Good product research requires rigorous analysis.",
-    collocation:
-      "rigorous analysis · rigorous testing · rigorous research"
-  }
+      definition:
+        "Beginning to become important, noticeable, or established.",
 
-};
+      example:
+        "AI is creating opportunities in many emerging industries.",
+
+      collocation:
+        "emerging market · emerging technology · emerging trend"
+
+    },
 
 
-let history =
-  JSON.parse(localStorage.getItem("vocabHistory") || "[]");
+    momentum: {
+
+      ipa:
+        "/moʊˈmentəm/",
+
+      cn:
+        "势头；动力；发展势能",
+
+      definition:
+        "The force or progress that allows something to continue growing.",
+
+      example:
+        "The company gained momentum after launching its new product.",
+
+      collocation:
+        "gain momentum · maintain momentum · strong momentum"
+
+    },
 
 
-function openArticle() {
+    landscape: {
 
-  document.getElementById("home").classList.add("hidden");
+      ipa:
+        "/ˈlændskeɪp/",
 
-  document.getElementById("reader").classList.add("open");
+      cn:
+        "格局；环境；领域形势",
 
-  document.getElementById("nav").style.display = "none";
+      definition:
+        "The overall situation or environment within a particular field.",
 
-  window.scrollTo(0,0);
+      example:
+        "Artificial intelligence is reshaping the business landscape.",
 
-  updateSeenWords();
+      collocation:
+        "business landscape · competitive landscape · digital landscape"
 
-}
-
-
-function closeArticle() {
-
-  document.getElementById("reader").classList.remove("open");
-
-  document.getElementById("home").classList.remove("hidden");
-
-  document.getElementById("nav").style.display = "grid";
-
-  updateHistory();
-
-  window.scrollTo(0,0);
-
-}
+    },
 
 
-function showWord(word) {
+    remarkable: {
 
-  const data = dictionary[word];
+      ipa:
+        "/rɪˈmɑːrkəbəl/",
 
-  if (!data) return;
+      cn:
+        "非凡的；显著的；引人注目的",
 
-  document.getElementById("sheetWord").textContent = word;
+      definition:
+        "Unusual or impressive enough to deserve attention.",
 
-  document.getElementById("sheetIPA").textContent = data.ipa;
+      example:
+        "The technology has made remarkable progress in recent years.",
 
-  document.getElementById("sheetCN").textContent = data.cn;
+      collocation:
+        "remarkable growth · remarkable achievement · remarkable progress"
 
-  document.getElementById("sheetDefinition").textContent =
-    data.definition;
-
-  document.getElementById("sheetExample").textContent =
-    data.example;
-
-  document.getElementById("sheetCollocation").textContent =
-    data.collocation;
-
-  document.getElementById("sheet").classList.add("show");
+    },
 
 
-  if (!history.includes(word)) {
+    rigorous: {
 
-    history.push(word);
+      ipa:
+        "/ˈrɪɡərəs/",
 
-    localStorage.setItem(
-      "vocabHistory",
-      JSON.stringify(history)
+      cn:
+        "严谨的；严格的",
+
+      definition:
+        "Extremely thorough, careful, and precise.",
+
+      example:
+        "Good product research requires rigorous analysis.",
+
+      collocation:
+        "rigorous analysis · rigorous testing · rigorous research"
+
+    }
+
+  };
+
+
+  /* ---------- LOCAL STORAGE ---------- */
+
+  let history =
+    JSON.parse(
+      localStorage.getItem(
+        "vocabHistory"
+      ) || "[]"
     );
 
-  }
 
-  updateSeenWords();
-  updateHistory();
-
-}
-
-
-function closeSheet() {
-
-  document.getElementById("sheet").classList.remove("show");
-
-}
+  let statuses =
+    JSON.parse(
+      localStorage.getItem(
+        "vocabStatuses"
+      ) || "{}"
+    );
 
 
-document.querySelectorAll(".word").forEach(el => {
-
-  el.addEventListener("click", () => {
-
-    showWord(el.dataset.word);
-
-  });
-
-});
+  let currentWord = null;
 
 
-function updateSeenWords() {
+  history.forEach(word => {
 
-  document.querySelectorAll(".word").forEach(el => {
+    if (!statuses[word]) {
 
-    if (history.includes(el.dataset.word)) {
-
-      el.classList.add("seen");
+      statuses[word] = "new";
 
     }
 
   });
 
-}
+
+  saveStatuses();
 
 
-function updateHistory() {
+  /* ---------- ARTICLE ---------- */
 
-  const count = document.getElementById("count");
+  function openArticle() {
 
-  const text = document.getElementById("historyText");
+    document
+      .getElementById("home")
+      .classList
+      .add("hidden");
 
-  count.textContent =
-    history.length + (history.length === 1 ? " word" : " words");
+
+    document
+      .getElementById(
+        "vocabularyPage"
+      )
+      .classList
+      .remove("open");
 
 
-  if (history.length) {
+    document
+      .getElementById(
+        "reader"
+      )
+      .classList
+      .add("open");
 
-    text.innerHTML =
-      history
-        .slice(-6)
-        .reverse()
-        .map(word => "<b>" + word + "</b>")
-        .join(" · ");
+
+    document
+      .getElementById("nav")
+      .style
+      .display = "none";
+
+
+    window.scrollTo(0,0);
+
+
+    updateSeenWords();
 
   }
 
-}
+
+  function closeArticle() {
+
+    document
+      .getElementById("reader")
+      .classList
+      .remove("open");
 
 
-updateHistory();
-updateSeenWords();
+    showHome();
+
+  }
+
+
+  /* ---------- WORD DETAIL ---------- */
+
+  function showWord(word) {
+
+    const data =
+      dictionary[word];
+
+
+    if (!data) return;
+
+
+    currentWord = word;
+
+
+    document
+      .getElementById(
+        "sheetWord"
+      )
+      .textContent = word;
+
+
+    document
+      .getElementById(
+        "sheetIPA"
+      )
+      .textContent = data.ipa;
+
+
+    document
+      .getElementById(
+        "sheetCN"
+      )
+      .textContent = data.cn;
+
+
+    document
+      .getElementById(
+        "sheetDefinition"
+      )
+      .textContent =
+        data.definition;
+
+
+    document
+      .getElementById(
+        "sheetExample"
+      )
+      .textContent =
+        data.example;
+
+
+    document
+      .getElementById(
+        "sheetCollocation"
+      )
+      .textContent =
+        data.collocation;
+
+
+    document
+      .getElementById(
+        "sheet"
+      )
+      .classList
+      .add("show");
+
+
+    if (
+      !history.includes(word)
+    ) {
+
+      history.push(word);
+
+
+      localStorage.setItem(
+
+        "vocabHistory",
+
+        JSON.stringify(history)
+
+      );
+
+    }
+
+
+    if (
+      !statuses[word]
+    ) {
+
+      statuses[word] =
+        "new";
+
+
+      saveStatuses();
+
+    }
+
+
+    renderStatusButtons();
+
+    updateSeenWords();
+
+    updateHistory();
+
+    renderVocabulary();
+
+  }
+
+
+  function closeSheet() {
+
+    document
+      .getElementById(
+        "sheet"
+      )
+      .classList
+      .remove("show");
+
+  }
+
+
+  /* ---------- LEARNING STATUS ---------- */
+
+  function saveStatuses() {
+
+    localStorage.setItem(
+
+      "vocabStatuses",
+
+      JSON.stringify(
+        statuses
+      )
+
+    );
+
+  }
+
+
+  function setStatus(status) {
+
+    if (!currentWord) return;
+
+
+    statuses[currentWord] =
+      status;
+
+
+    saveStatuses();
+
+    renderStatusButtons();
+
+    renderVocabulary();
+
+  }
+
+
+  function renderStatusButtons() {
+
+    document
+      .querySelectorAll(
+        ".status-btn"
+      )
+      .forEach(button => {
+
+        button
+          .classList
+          .toggle(
+
+            "selected",
+
+            currentWord &&
+            statuses[currentWord] ===
+            button.dataset.status
+
+          );
+
+      });
+
+  }
+
+
+  /* ---------- NAVIGATION ---------- */
+
+  function showHome() {
+
+    document
+      .getElementById("reader")
+      .classList
+      .remove("open");
+
+
+    document
+      .getElementById(
+        "vocabularyPage"
+      )
+      .classList
+      .remove("open");
+
+
+    document
+      .getElementById("home")
+      .classList
+      .remove("hidden");
+
+
+    document
+      .getElementById("nav")
+      .style
+      .display = "grid";
+
+
+    document
+      .getElementById(
+        "navDiscover"
+      )
+      .classList
+      .add("active");
+
+
+    document
+      .getElementById(
+        "navVocabulary"
+      )
+      .classList
+      .remove("active");
+
+
+    updateHistory();
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+  }
+
+
+  function showVocabulary() {
+
+    document
+      .getElementById("reader")
+      .classList
+      .remove("open");
+
+
+    document
+      .getElementById("home")
+      .classList
+      .add("hidden");
+
+
+    document
+      .getElementById(
+        "vocabularyPage"
+      )
+      .classList
+      .add("open");
+
+
+    document
+      .getElementById("nav")
+      .style
+      .display = "grid";
+
+
+    document
+      .getElementById(
+        "navDiscover"
+      )
+      .classList
+      .remove("active");
+
+
+    document
+      .getElementById(
+        "navVocabulary"
+      )
+      .classList
+      .add("active");
+
+
+    renderVocabulary();
+
+
+    window.scrollTo(
+      0,
+      0
+    );
+
+  }
+
+
+  /* ---------- WORD CLICK ---------- */
+
+  document
+    .querySelectorAll(
+      ".word"
+    )
+    .forEach(element => {
+
+      element
+        .addEventListener(
+          "click",
+          () => {
+
+            showWord(
+              element.dataset.word
+            );
+
+          }
+        );
+
+    });
+
+
+  /* ---------- HIGHLIGHT WORDS ---------- */
+
+  function updateSeenWords() {
+
+    document
+      .querySelectorAll(
+        ".word"
+      )
+      .forEach(element => {
+
+        if (
+          history.includes(
+            element.dataset.word
+          )
+        ) {
+
+          element
+            .classList
+            .add("seen");
+
+        }
+
+      });
+
+  }
+
+
+  /* ---------- HOME HISTORY ---------- */
+
+  function updateHistory() {
+
+    const count =
+      document
+        .getElementById(
+          "count"
+        );
+
+
+    const text =
+      document
+        .getElementById(
+          "historyText"
+        );
+
+
+    count.textContent =
+
+      history.length +
+
+      (
+        history.length === 1
+          ? " word"
+          : " words"
+      );
+
+
+    if (
+      history.length
+    ) {
+
+      text.innerHTML =
+
+        history
+
+          .slice(-6)
+
+          .reverse()
+
+          .map(
+            word =>
+              "<b>" +
+              word +
+              "</b>"
+          )
+
+          .join(" · ");
+
+    } else {
+
+      text.textContent =
+
+        "Tap words while reading and they will appear here.";
+
+    }
+
+  }
+
+
+  /* ---------- VOCABULARY PAGE ---------- */
+
+  function renderVocabulary() {
+
+    const list =
+      document
+        .getElementById(
+          "vocabList"
+        );
+
+
+    if (!list) return;
+
+
+    const searchBox =
+      document
+        .getElementById(
+          "vocabSearch"
+        );
+
+
+    const query =
+      (
+        searchBox
+          ?.value || ""
+      )
+
+        .trim()
+
+        .toLowerCase();
+
+
+    const words =
+
+      [...history]
+
+        .reverse()
+
+        .filter(
+          word =>
+
+            word
+              .toLowerCase()
+              .includes(query)
+
+        );
+
+
+    if (
+      !words.length
+    ) {
+
+      list.innerHTML =
+
+        '<div class="vocab-empty">' +
+
+        (
+          history.length
+
+            ? "No matching words."
+
+            : "还没有词汇。去阅读文章，点击一个紫色单词试试看。"
+        )
+
+        +
+
+        "</div>";
+
+
+      return;
+
+    }
+
+
+    list.innerHTML =
+
+      words
+
+        .map(word => {
+
+          const data =
+            dictionary[word] || {};
+
+
+          const status =
+            statuses[word] ||
+            "new";
+
+
+          return `
+
+            <div
+              class="vocab-card"
+              onclick="showWord('${word}')"
+            >
+
+              <div class="vocab-row">
+
+                <div>
+
+                  <div class="vocab-word">
+                    ${word}
+                  </div>
+
+                  <div class="vocab-ipa">
+                    ${data.ipa || ""}
+                  </div>
+
+                </div>
+
+
+                <span
+                  class="
+                    status-badge
+                    ${status}
+                  "
+                >
+                  ${status}
+                </span>
+
+              </div>
+
+
+              <div class="vocab-cn">
+                ${data.cn || ""}
+              </div>
+
+            </div>
+
+          `;
+
+        })
+
+        .join("");
+
+  }
+
+
+  /* ---------- INITIALIZE ---------- */
+
+  updateHistory();
+
+  updateSeenWords();
+
+  renderVocabulary();
 
 </script>
 
