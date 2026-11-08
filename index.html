@@ -2517,7 +2517,67 @@
         .join("");
 
   }
+  /* SUPABASE LOAD */
 
+  async function loadVocabularyFromSupabase() {
+
+    const { data, error } =
+      await supabaseClient
+        .from("vocabulary")
+        .select("*");
+
+    if (error) {
+
+      console.error(
+        "Supabase read failed:",
+        error
+      );
+
+      return;
+
+    }
+
+    data.forEach(row => {
+
+      const word =
+        (row.word || "")
+          .trim()
+          .toLowerCase();
+
+      if (!word) return;
+
+      dictionary[word] = {
+        ipa: row.ipa || "",
+        cn: row.meaning_cn || "",
+        definition: row.meaning_en || "",
+        example: row.example || "",
+        collocation: row.collocation || ""
+      };
+
+      if (!history.includes(word)) {
+        history.push(word);
+      }
+
+      statuses[word] =
+        (row.status || "new")
+          .toLowerCase();
+
+    });
+
+    saveHistory();
+    saveStatuses();
+    updateHistory();
+    updateSeenWords();
+    updateStats();
+    renderVocabulary();
+
+    console.log(
+      `Loaded ${data.length} words from Supabase.`
+    );
+
+  }
+
+  loadVocabularyFromSupabase();
 
   /* INITIALIZE */
 
