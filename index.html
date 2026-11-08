@@ -1365,12 +1365,25 @@
 </div>
 
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 <script>
+
+  const SUPABASE_URL =
+    "https://dwqtxnefvlydlynxhybt.supabase.co";
+
+  const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_yEb967HULMsvthc6rTbwoQ_MXiLOIgm";
+
+  const supabaseClient =
+    supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_PUBLISHABLE_KEY
+    );
 
   /* WORD DATA */
 
   const dictionary = {
-
     emerging: {
 
       ipa:
